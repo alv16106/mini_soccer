@@ -9,6 +9,7 @@ const fuzzy_and = (...elements) =>
 
 const hAlotLeft = fuzzy_or(
   alotToTheLeft,
+  toTheLeft,
 )
 
 const hLittleLeft = fuzzy_or(
@@ -18,6 +19,7 @@ const hLittleLeft = fuzzy_or(
 
 const hAlotRight = fuzzy_or(
   alotToTheRight,
+  toTheRight,
 )
 
 const hLittleRight = fuzzy_or(
@@ -94,7 +96,7 @@ const choose_rotation = (values, returns, clauses, data, key) => {
   for (let i = 0; i < returns.length; i++) {
     bigger = (clause[bigger] < clause[i]) ? i : bigger;
   }
-  console.log(values)
+  // console.log(values)
   
   return values[bigger];
 }
