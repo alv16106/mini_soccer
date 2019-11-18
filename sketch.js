@@ -9,10 +9,12 @@ const getRaw = (ball, robot) =>{
 }
 
 function setup() {
+  // frameRate(60)
   createCanvas(1600, 1100)
   field = loadImage('assets/field.jpg')
   robo = new Robot()
   ball = new Ball()
+  angleMode(RADIANS); 
 }
 
 function draw() {
@@ -123,5 +125,5 @@ const whereToRotate = (ball, robot) => {
     { radian: current_radian },
     "rotation",
   );
-  return u;
+  return (u ? u : 0) ;
 }
