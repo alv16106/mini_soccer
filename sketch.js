@@ -104,28 +104,7 @@ const whereToRotate = (ball, robot) => {
   let current_radian = - robot.speed.angleBetween(b);
   //console.log(current_radian);
 
-  let u = choose_rotation(
-    [
-      integral_left({radian: current_radian} , "rotation", clause_alotLeft)["value"],
-      integral_left({radian: current_radian} , "rotation", clause_littleLeft)["value"],
-      integral_right({radian: current_radian} , "rotation", clause_alotRight)["value"],
-      integral_right({radian: current_radian} , "rotation", clause_littleRight)["value"],
-    ],
-    [
-      "mucho izq",
-      "poco izq",
-      "mucho der",
-      "poco der",
-    ],
-    [
-      clause_alotLeft,
-      clause_littleLeft,
-      clause_alotRight,
-      clause_littleRight,
-    ],
-    { radian: current_radian },
-    "rotation",
-  );
-  console.log(u, current_radian)
+  let u = choose_rotation({ radian: current_radian }, "rotation", horn_rotation);
+  // console.log(u, current_radian)
   return (u ? u : 0) ;
 }
