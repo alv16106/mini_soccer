@@ -13,33 +13,6 @@ function setup() {
   field = loadImage('assets/field.jpg')
   robo = new Robot()
   ball = new Ball()
-
-  // console.log(integral_left({radian: -3} , "rotation", clause_alotLeft));
-
-  let current_radian = -2.2;
-  let u = choose_rotation(
-    [
-      integral_left({radian: current_radian} , "rotation", clause_alotLeft)["value"],
-      integral_left({radian: current_radian} , "rotation", clause_littleLeft)["value"],
-      integral_right({radian: current_radian} , "rotation", clause_alotRight)["value"],
-      integral_right({radian: current_radian} , "rotation", clause_littleRight)["value"],
-    ],
-    [
-      "mucho izq",
-      "poco izq",
-      "mucho der",
-      "poco der",
-    ],
-    [
-      clause_alotLeft,
-      clause_littleLeft,
-      clause_alotRight,
-      clause_littleRight,
-    ],
-    { radian: current_radian },
-    "rotation",
-  );
-  console.log(u)
 }
 
 function draw() {
@@ -82,6 +55,11 @@ function Robot() {
 
   this.update = (ballx, bally) => {
     // Update code with fuzzy logic
+
+    let rad = whereToRotate(this, ball);
+    console.log(rad)
+    this.speed = p5.Vector.fromAngle(rad, 1)
+    
     this.x += this.speed.x
     this.y += this.speed.y
   }
@@ -93,7 +71,7 @@ function Robot() {
 }
 
 function Ball() {
-  this.x = 550
+  this.x = 1200
   this.y = 350
   this.r = 20
   this.smultiplier = 3
@@ -116,4 +94,34 @@ function Ball() {
     shoot_angle = shoot_angle * Math.PI / 180
     this.speed = p5.Vector.fromAngle(shoot_angle, 5);
   }
+}
+
+
+const whereToRotate = (ball, robot) => {
+
+  let current_radian = getRaw(ball, robot) - Math.PI;
+
+  let u = choose_rotation(
+    [
+      integral_left({radian: current_radian} , "rotation", clause_alotLeft)["value"],
+      integral_left({radian: current_radian} , "rotation", clause_littleLeft)["value"],
+      integral_right({radian: current_radian} , "rotation", clause_alotRight)["value"],
+      integral_right({radian: current_radian} , "rotation", clause_littleRight)["value"],
+    ],
+    [
+      "mucho izq",
+      "poco izq",
+      "mucho der",
+      "poco der",
+    ],
+    [
+      clause_alotLeft,
+      clause_littleLeft,
+      clause_alotRight,
+      clause_littleRight,
+    ],
+    { radian: current_radian },
+    "rotation",
+  );
+  return u;
 }
