@@ -1,5 +1,5 @@
 // bastante a la der
-const alotToTheRight = ({ degree: x }) => {
+const alotToTheRight = ({ radian: x }) => {
   if (0 <= x && x <= Math.PI) {
     return Math.E ** (-2.5 * (x - Math.PI)**2)
   }
@@ -7,7 +7,7 @@ const alotToTheRight = ({ degree: x }) => {
 }
 
 // a la der
-const toTheRight = ({ degree: x }) => {
+const toTheRight = ({ radian: x }) => {
   if (0 <= x && x <= Math.PI) {
     return Math.E ** (-2.5 * (x - Math.PI / 2)**2)
   }
@@ -15,7 +15,7 @@ const toTheRight = ({ degree: x }) => {
 }
 
 // un poco a la der
-const littleToTheRight = ({ degree: x }) => {
+const littleToTheRight = ({ radian: x }) => {
   if (0 <= x && x <= Math.PI / 2) {
     return Math.E ** (-2.5 * (x)**2)
   }
