@@ -53,14 +53,14 @@ function Robot() {
   this.x = 800
   this.y = 500
   this.r = 40
-  this.speed = createVector(0, 0)
+  this.speed = p5.Vector.fromAngle(3.14, 1)
 
   this.update = (ballx, bally) => {
     // Update code with fuzzy logic
-
-    let rad = whereToRotate(this, ball);
-    console.log(rad)
-    this.speed = p5.Vector.fromAngle(rad, 1)
+    let rad = whereToRotate(ball, this);
+    // console.log(rad)
+    this.speed = this.speed.rotate(rad);
+    this.speed = this.speed.setMag(10);
     
     this.x += this.speed.x
     this.y += this.speed.y
@@ -74,7 +74,7 @@ function Robot() {
 
 function Ball() {
   this.x = 1200
-  this.y = 350
+  this.y = 750
   this.r = 20
   this.smultiplier = 3
   this.speed = createVector(0, 0)
@@ -100,8 +100,9 @@ function Ball() {
 
 
 const whereToRotate = (ball, robot) => {
-
-  let current_radian = getRaw(ball, robot) - Math.PI;
+  let b = createVector(robot.x - ball.x, robot.y - ball.y);
+  let current_radian = - robot.speed.angleBetween(b);
+  //console.log(current_radian);
 
   let u = choose_rotation(
     [
@@ -125,5 +126,6 @@ const whereToRotate = (ball, robot) => {
     { radian: current_radian },
     "rotation",
   );
+  console.log(u, current_radian)
   return (u ? u : 0) ;
 }
