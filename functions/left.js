@@ -1,5 +1,5 @@
 // bastante a la izq
-const alotToTheLeft = ({ degree: x }) => {
+const alotToTheLeft = ({ radian: x }) => {
   if (-Math.PI <= x && x <= 0) {
     return Math.E ** (-2.5 * (x + Math.PI)**2)
   }
@@ -7,7 +7,7 @@ const alotToTheLeft = ({ degree: x }) => {
 }
 
 // a la izq
-const toTheLeft = ({ degree: x }) => {
+const toTheLeft = ({ radian: x }) => {
   if (-Math.PI <= x && x <= 0) {
     return Math.E ** (-2.5 * (x + Math.PI / 2)**2)
   }
@@ -15,7 +15,7 @@ const toTheLeft = ({ degree: x }) => {
 }
 
 // un poco a la izq
-const littleToTheLeft = ({ degree: x }) => {
+const littleToTheLeft = ({ radian: x }) => {
   if (-Math.PI <= x && x <= 0) {
     return Math.E ** (-2.5 * (x)**2)
   }

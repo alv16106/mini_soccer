@@ -13,6 +13,33 @@ function setup() {
   field = loadImage('assets/field.jpg')
   robo = new Robot()
   ball = new Ball()
+
+  // console.log(integral_left({radian: -3} , "rotation", clause_alotLeft));
+
+  let current_radian = -2.2;
+  let u = choose_rotation(
+    [
+      integral_left({radian: current_radian} , "rotation", clause_alotLeft)["value"],
+      integral_left({radian: current_radian} , "rotation", clause_littleLeft)["value"],
+      integral_right({radian: current_radian} , "rotation", clause_alotRight)["value"],
+      integral_right({radian: current_radian} , "rotation", clause_littleRight)["value"],
+    ],
+    [
+      "mucho izq",
+      "poco izq",
+      "mucho der",
+      "poco der",
+    ],
+    [
+      clause_alotLeft,
+      clause_littleLeft,
+      clause_alotRight,
+      clause_littleRight,
+    ],
+    { radian: current_radian },
+    "rotation",
+  );
+  console.log(u)
 }
 
 function draw() {
